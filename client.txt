@@ -67,3 +67,67 @@ docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
 9.docker images
 10.docker rmi jasonrivers/nagios
 
+
+
+
+
+AWS:
+DEPLOYMENT of index.html using EC2 instance.
+login to aws student login
+dashboard->modules->launch AWS learner Academy lab->start lab(click on green aws lab->click EC2->launch instance3. ->Instance page is opened-->
+4. Give a name to an instance under names and tags(MyExampleWebServer).
+5. Under Application and OS images select ubuntu OS-->go for free tier option.
+6. select the architecture as 64-bit(x86).
+7. Instance type: h/w resources that u need like cpu,memory-->select t2.micro in this.
+8.Give KeyPair name and click on create key pair & Save the .pem file in folder AWS on desktop
+9.HERE select https and http in network settings
+10.Now click on Launch Instance option at the bottom right.(AWS creates an instance.)
+11.click on the instances at the top (after green ) once it is created select that instance(click checkbox and click on connect).connect to instance (copy ssh – i command).
+12.Copy the path of .pem file (in power shell admin mode: cd <path of .pem file>.
+13.paste the ssh -i cmd in windows shell.(now in ubuntu).
+14.sudo apt update,sudo apt-get install docker.io,sudo apt install git,sudo apt install nano.
+15.Create basic index.html file in folder Example in vscode.Open git Bash in folder Example by right clicking with mouse.
+git init
+git add .
+git commit –m “first commit”
+16.Create git repository (AWS).
+git branch –M main
+git remote add origin <https url of AWS repo>
+git push –u origin main
+refresh repository and You can now see index.html in github.Copy http path in code.
+git clone <copied http url> in ubuntu in windows powershell.,ls,cd AWS,again ls(then index.html).
+17.nano Dockerfile
+inside it FROM nginx:alpine
+           COPY . /usr/share/nginx/html (ctrl+s,ctrl+x)
+18.in windows powershell-->sudo docker build –t mywebapp .
+19.sudo docker run –d –p 80:80 mywebapp.
+20.Go to instances and click on instance here i-0388... and then Copy public ipv4 address.
+21.Paste it in the browser to get below output(which is in index.html).
+22.sudo docker ps,sudo docker stop <container-id of mywebapp>.
+23.Go back to instances.click on instance state and terminate instance. and end lab.
+
+
+
+
+
+2 MAVEN WEB PROJECT DEPLOYMENT IN AWS:
+1.click on start lab-->and then on aws-->click on EC2-->launch instance-->give name.(same OS t2.micro,free tier and all.
+2.Create new key,Check all the boxes under network(http and https) and click  on launch instance at the bottom right.)
+3.Click on instances,Wait until you get 2 tests passes,Click on connect after checking the box.
+4.Copy ssh command,Open the terminal, Navigate to the path same like above (12 and 13 steps).
+5.Run the ssh command.
+6.sudo apt update,sudo apt-get install docker.io,sudo apt install git,sudo apt install nano.
+7.Open MAVEN WEB PROJECT REPO in github and copy http link,Clone the repository,
+8.If your repository is in main run following-->ls,cd MavenWebproject/.
+9.in ubuntu itself: nano Dockerfile :  FROM tomcat:9-jdk11
+                                        COPY target/*.war /usr/local/tomcat/webapps
+10.sudo docker build –t mavenweb .
+11.sudo docker run –d –p 9090:8080 mavenweb
+12.Copy public ipv4: enter url in browser 54.87.134.240:9090/MavenWebproject.
+13.If your app is not running goto security  and Click on security groups,Click on edit inbound rules,Click on add rule give port as 9090 and 0.0.0.0/0 click on save rules.
+14.And refresh the page to check whether the web page has loaded or not.(success).
+15.sudo docker ps,sudo docker stop <container-id of mavenweb>,next terminate instance and end lab.
+
+
+
+
