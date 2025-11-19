@@ -323,3 +323,21 @@ Build now.
 
 
 
+
+Jenkins WebHooks:
+1.https://ngrok.com :login with email.
+2.go to nrok-amd64 path and click ngrok file(cmd prompt opens).
+3.copy authtoken from ngrok
+4.ngrok config add-authtoken <your_token>  in cmd.
+5.ngrok http 8081 : type this in ngrok cmd .
+6.Copy this URL only highlighted part : Forwarding lo upto dev 
+7.Go to your GitHub repository,settings->webhooks-->add webhooks-->payload url(	Add url https://unhired-stormily-alaine.ngrok-free.dev/github-webhook/) like this.
+8.Set content Type to application/json,just push event-->click on Add webhook to save
+9.Open Jenkins Dashboard,Select the job (freestyle or pipeline) you’ve already created,Click Configure,Scroll down to the Build Triggers section,Check the box: GitHub hook trigger for GITScm polling.
+10.Test the Setup
+1.	Make any code update in your local repo and push it to GitHub.
+2.	Once pushed, GitHub will trigger the webhook.
+3.	Jenkins will automatically detect the change and start the build pipeline.
+
+
+
