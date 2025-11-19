@@ -67,4 +67,3 @@ docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
 9.docker images
 10.docker rmi jasonrivers/nagios
 
-
