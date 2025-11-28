@@ -1,0 +1,42 @@
+Maven Java Project in Eclipse:
+Open Eclipse--->Go to file-->click on New-->Other--->Maven Project-->Next-->Next-->Filter: org.apache.maven(wait a bit)-->
+uncheck(Show the last version of Archetype only)-->scroll down and select the option(maven-archetype-quickstart 1.4)-->
+Click on Next-->Group id : com.app.demo,Artifct id: SampleMavenJavaProject-->Finish click.
+Package explorer : proj is there-->expand this-->src/main/java(main code here: App.java)-->src/test/java(test files)-->target(pom.xml).
+Run build cycle : Right click on proj-->Run As-->Maven clean-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven install-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven test-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven build-->Goals : clean install test (Apply and then run).-->BUILD SUCCESS-->.jar file is created in target folder
+                  Right click on proj-->Run As-->Java Application-->OK-->Console O/p: Hello World.
+
+Push to git : Create a new repo for java proj in github(.gitignore-->Maven)--Create repository-->Go to Code-->copy the url
+-->open git bash-->type : git clone <paste the copied url>-->cd SAmpleMavenJavaProject-->In local sys(File Manager)-->
+C-->users-->chenn-->eclipse-workspace-->search for proj you created(SampleMavenJavaProject)-->copy all the files inside this-->Go back to the place eclipse-workplace is there
+-->You'll see one folder called as SampleMavenJavaProject(cloned from github)-->paste all the files here.
+In gitbash: git add .-->git commit -m "Sample Maven Java"-->git push-->Now refresh ur maven repo -->All files are tere.
+
+
+
+
+Maven Web Project :
+File->new->other->maven project->next->next->Filter: org.apache.maven->same steps: maven-archetype-webapp 1.4 just like above.
+-->next->grp id : com.app.demo,Artifact id:SAmpleMavenWebProject->finish->package explorer->proj(src/main/webapp/index.jsp)-->(Normal html template)
+-->pom.xml-->  (If add dependency) Go to browser -->search servlet api maven dependency --> javax.servlet>>...--> scroll down you'll find 2.5 version-->
+scroll down and copy the dependency there and paste in eclipse in pom.xml under dependencies section.(Save All)
+
+Run build cycle : Right click on proj-->Run As-->Maven clean-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven install-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven test-->BUILD SUCCESS.
+                  Right click on proj-->Run As-->Maven build-->Goals : clean install test (Apply and then run).-->BUILD SUCCESS-->.war file is created in target folder
+                  Right click on proj-->Run As-->Run on Server-->localhost-->Tomcat v9.0 server-->next-->Finish-->Restart server(OK).
+                  O/P : web browser.
+
+Push to git:Create a new repo for java proj in github(.gitignore-->Maven)--Create repository-->Go to Code-->copy the url
+In Eclipse : Right click on proj --> Show in Local Terminal-->Git Bash-->git init-->ls-->git add . -->git commit -m "Web Maven"
+-->git remote add origin <paste the copied url from step 1> --> git push -u origin master-->refresh the repository and all files are there under master branch.
+
+
+
+
+Git Commands :
+
