@@ -39,8 +39,35 @@ In Eclipse : Right click on proj --> Show in Local Terminal-->Git Bash-->git ini
 
 
 Git Commands :
+git --version
+git config --global --list
+git config --global user.name "Your Name"
+git config --global user.email "Your@gmail."
+git init
+git status
+git add . (git add a.txt)
+git commit -m "New change"
+git diff
+git help <command>
+
+Branches: 
+git branch <branch-name> -->new branch
+git branch -a -->lists all branches
+git branch -d <branch-name> -->delete branch
+git checkout <branch-name> -->switch to branch
+git checkout -b <new-branch> -->create and switch to new branch
+git merge <branch-name> 
+git log
+git log --oneline
+git revert <commit-hash> (previous commit id paste ok)
+git remote add origin "repo name"
 
 
+git clone "url"
+git pull origin main
+git push -u origin main
+git branch -M main
+git lo Fork 
 
 
 
