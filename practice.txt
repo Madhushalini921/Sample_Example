@@ -72,10 +72,272 @@ git lo Fork
 
 
 
+Docker Compose :
+Windows power she'll:
+notepad docker-compose.yml
+File opens,write txt content.
+docker-compose up -d
+docker ps
+docker-compose down
+docker ps
+
+txt content in notepad : 
+hey welcome
 
 
 
 
+version: '3.9'
+
+services:
+
+  db:
+    image: mysql:5.7
+    container_name: wordpress-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress-app
+    restart: always
+    ports:
+      - "9070:80"  # Map port 80 of the container to port 9080 of the host
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+version: "3.9"
+
+services:
+
+  tomcat1:
+    image: neksha/se-lab2-web-maven:latest
+    container_name: tomcat-app
+    ports:
+      - "6020:8080"
+    restart: always
+
+  wordpress-db:
+    image: mysql:8.0
+    container_name: wordpress-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppass
+    ports:
+      - "3307:3306"
+    volumes:
+      - wpdb_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress-site
+    restart: always
+    ports:
+      - "8085:80"
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db:3306
+      WORDPRESS_DB_NAME: wpdb
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+    depends_on:
+      - wordpress-db
+    volumes:
+      - wp_content:/var/www/html
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "8081:80"
+    restart: always
+    depends_on:
+      - tomcat1
+      - wordpress
+
+volumes:
+  wpdb_data:
+  wp_content:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+version: "3.9"
+
+services:
+  tomcat1:
+    image: neksha/hub-myimg-prac1:latest   # your custom Tomcat web image
+    container_name: tomcat-app
+    ports:
+      - "6020:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - "3307:3306"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "8081:80"
+
+  tomcat2:
+    image: tomcat:9.0
+    container_name: tomcat-server
+    ports:
+      - "8082:8080"
+
+
+
+
+version: "3.9"
+
+services:
+  tomcat1:
+    image: neksha/hub-myimg-prac1:latest   # your custom Tomcat web image
+    container_name: tomcat-app
+    ports:
+      - "6020:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - "3307:3306"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "8081:80"
+
+  tomcat2:
+    image: tomcat:9.0
+    container_name: tomcat-server
+    ports:
+      - "8082:8080"
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ssh git push:
+
+
+
+p1--
+cmd> ssh-keygen -t rsa
+copy the path of public key saved
+open the file with notepad
+copy the ssh key from notepad 
+github> settings > ssh and gpg keys > add new key > save
+
+select ssh and copy the cmds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+open cmd
+cd .ssh
+dir
+del *
+dir
+cd ..
+
+cmd:------
+ssh-keygen -t ed25519 -C "edigiralaneksha@gmail.com"
+press enter - enter -enter 
+
+
+in the eclipse git bash:
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub -copy the key of ssh and add in the github
+ssh -T git@github.com
+create new repo and select ssh
+git init
+git add .
+git commit 
+.....
+
+
+Based on question copy the correct application txt and then go localhost:<port-number> of the specified application(wordpress and mysql or something diff.
 
 
 
