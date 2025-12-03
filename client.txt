@@ -339,3 +339,78 @@ Jenkins WebHooks:
 1.	Make any code update in your local repo and push it to GitHub.
 2.	Once pushed, GitHub will trigger the webhook.
 3.	Jenkins will automatically detect the change and start the build pipeline.
+
+
+
+
+
+Jenkins Email :
+Step-1: Creation of app password
+Gmail: Enable App Password (for 2-Step Verification)
+ii. Enable 2-Step Verification
+iii. Generate App Password for Jenkins
+•	Go to:
+o	Security → App passwords
+•	Select:
+o	App: Other (Custom name)
+o	Name: Jenkins-Demo
+•	Click Generate
+•	Copy the 16-digit app password
+o	Save it in a secure location (e.g., Notepad)
+
+.  Jenkins Plugin Installation
+i. Open Jenkins Dashboard
+ii. Navigate to:
+•	Manage Jenkins → Manage Plugins
+iii. Install Plugin:
+•	Search for and install:
+o	Email Extension Plugin
+
+Configure Jenkins Global Email Settings
+  Go to:
+•	Manage Jenkins → Configure System
+
+. E-mail Notification Section
+Field	Value
+SMTP Server	smtp.gmail.com
+Use SMTP Auth	✅ Enabled
+User Name	Your Gmail ID (e.g., archanareddykmit@gmail.com)
+Password	Paste the 16-digit App Password
+Use SSL	✅ Enabled
+SMTP Port	465
+Reply-To Address	Your Gmail ID (same as above)
+
+Test Configuration
+•	Click: Test configuration by sending test e-mail
+•	Provide a valid email address to receive a test mail
+•	✅ Should receive email from Jenkins
+
+
+
+B. Extended Email configuration:
+
+Field	       Value
+SMTP Server	smtp.gmail.com
+SMTP Port	465
+Use SSL	✅ Enabled
+Credentials	Add Gmail ID and App Password as Jenkins credentials
+Default Content Type	text/html or leave default
+Default Recipients	Leave empty or provide default emails
+Triggers	Select as per needs (e.g., Failure)
+
+
+Configure Email Notifications for a Jenkins Job
+i. Go to:
+•	Jenkins → Select a Job → Configure
+. In the Post-build Actions section:
+•	Click: Add post-build action → Editable Email Notification
+
+. Fill in the fields:
+Field	                 Value
+Project Recipient List	Add recipient email addresses (comma-separated)
+Content Type	Default (text/plain) or text/html
+Triggers	Select events (e.g., Failure, Success, etc.)
+Attachments	(Optional) Add logs, reports, etc.
+iii. Click Save
+
+
